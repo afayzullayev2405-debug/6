@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <title>Mevalar do'koni</title>
+  <style>
+    /* .card { border: 1px solid #ccc; padding: 10px; margin: 10px; }
+    .sale { background-color: orange; }
+    .sold-out { opacity: 0.4; }
+    .hidden { display: none; } */
+  </style>
+</head>
+<body>
+  <h1 id="shop-title">Mevalar do'koni</h1>
+
+  <div id="shop">
+    <div class="card" id="card1">
+      <h3>Olma</h3>
+      <p class="price">5000</p>
+      <span class="stock">Bor</span>
+    </div>
+    <div class="card" id="card2">
+      <h3>Banan</h3>
+      <p class="price">12000</p>
+      <span class="stock">Bor</span>
+    </div>
+    <div class="card" id="card3">
+      <h3>Uzum</h3>
+      <p class="price">20000</p>
+      <span class="stock">Tugagan</span>
+    </div>
+    <div class="card" id="card4">
+      <h3>Anor</h3>
+      <p class="price">15000</p>
+      <span class="stock">Bor</span>
+    </div>
+  </div>
+
+  <script>
+const shopTitle = document.getElementById('shop-title');
+console.log(shopTitle);
+
+const cards = document.querySelectorAll('.card');
+console.log(cards.length);
+
+document.querySelectorAll('h3').forEach(h3 => {
+  console.log(h3.textContent);
+});
+
+document.querySelectorAll('.price').forEach(price => {
+  console.log(price.textContent);
+});
+
+const card3Stock = document.querySelector('#card3 .stock');
+console.log(card3Stock);
+
+const shop = document.getElementById('shop');
+console.log(shop.firstElementChild);
+console.log(shop.lastElementChild);
+
+const card2 = document.getElementById('card2');
+const uzumCard = card2.nextElementSibling;
+console.log(uzumCard.querySelector('h3').textContent);
+
+const card4 = document.getElementById('card4');
+const uzumFromCard4 = card4.previousElementSibling;
+console.log(uzumFromCard4);
+
+document.querySelectorAll('.stock').forEach(stock => {
+  console.log(stock.parentElement.querySelector('h3').textContent);
+});
+  </script>
+</body>
+</html>

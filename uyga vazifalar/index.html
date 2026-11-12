@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <title>Amaliyot</title>
+</head>
+<body>
+
+  <div>
+    <h3>1. Familiya va Yosh</h3>
+    <input type="text" id="familiya" placeholder="Familiya">
+    <input type="number" id="yosh" placeholder="Yosh">
+    <button id="saqlashBtn">Saqlash</button>
+    <p id="natija"></p>
+  </div>
+
+  <div>
+    <h3>2. Bosishlar sanagichi</h3>
+    <h2 id="hisob">0</h2>
+    <button id="bosBtn">Bosish</button>
+    <button id="nolgaBtn">Nolga tushirish</button>
+  </div>
+
+  <div>
+    <h3>3. Yorug' / Qorong'i rejim</h3>
+    <button id="rejimBtn">Rejimni almashtirish</button>
+  </div>
+
+  <div>
+    <h3>4. Sessiya xabari</h3>
+    <input type="text" id="xabar" placeholder="Matn yozing">
+    <button id="eslabBtn">Eslab qol</button>
+  </div>
+
+  <script>
+    const familiya = document.getElementById('familiya');
+    const yosh = document.getElementById('yosh');
+    const saqlashBtn = document.getElementById('saqlashBtn');
+    const natija = document.getElementById('natija');
+
+    natija.textContent = `Familiya: ${localStorage.getItem('f') || '...'}, Yosh: ${localStorage.getItem('y') || '...'}`;
+
+    saqlashBtn.addEventListener('click', function() {
+      localStorage.setItem('f', familiya.value);
+      localStorage.setItem('y', yosh.value);
+      natija.textContent = `Familiya: ${familiya.value}, Yosh: ${yosh.value}`;
+    });
+
+
+    let son = localStorage.getItem('s') || 0;
+    const hisob = document.getElementById('hisob');
+    const bosBtn = document.getElementById('bosBtn');
+    const nolgaBtn = document.getElementById('nolgaBtn');
+
+    hisob.textContent = son;
+
+    bosBtn.addEventListener('click', function() {
+      son++;
+      localStorage.setItem('s', son);
+      hisob.textContent = son;
+    });
+
+    nolgaBtn.addEventListener('click', function() {
+      son = 0;
+      localStorage.removeItem('s');
+      hisob.textContent = son;
+    });
+
+
+    const rejimBtn = document.getElementById('rejimBtn');
+    
+    if (localStorage.getItem('theme') === 'qora') {
+      document.body.style.background = 'black';
+      document.body.style.color = 'white';
+    }
+
+    rejimBtn.addEventListener('click', function() {
+      if (document.body.style.background === 'black') {
+        document.body.style.background = 'white';
+        document.body.style.color = 'black';
+        localStorage.setItem('theme', 'oq');
+      } else {
+        document.body.style.background = 'black';
+        document.body.style.color = 'white';
+        localStorage.setItem('theme', 'qora');
+      }
+    });
+
+
+    const xabar = document.getElementById('xabar');
+    const eslabBtn = document.getElementById('eslabBtn');
+
+    xabar.value = sessionStorage.getItem('x') || '';
+
+    eslabBtn.addEventListener('click', function() {
+      sessionStorage.setItem('x', xabar.value);
+    });
+  </script>
+
+</body>
+</html>
